@@ -1,0 +1,18 @@
+{
+  "method": "shared-parameter Double DQN + demonstrations (DQfD-style)",
+  "seed": 2026,
+  "demo_episodes": 400,
+  "pretrain_steps": 12000,
+  "online_episodes": 1500,
+  "hidden": 128,
+  "gamma": 0.97,
+  "lr": 0.0005,
+  "batch": 128,
+  "margin": 10.0,
+  "online_epsilon": 0.05,
+  "reward": "50*on-time completions - travel - 10*conflicts - 0.1*messages",
+  "teacher": "OnlineGreedyPolicy(tie_break='convention'), training only",
+  "training_scenario_seeds": ">=300000 (evaluation seeds are 1-10)",
+  "training_time_s": 215.3,
+  "checkpoint_sha256": "77814a23eedf9291561615fafb002c0796735851adc860fd4f48bc8e21a06a06"
+}
