@@ -1,0 +1,121 @@
+{
+  "python_version": "3.12.7",
+  "numpy_version": "2.5.5",
+  "grid_width": 10,
+  "grid_height": 10,
+  "n_robots": 3,
+  "n_tasks": 10,
+  "max_steps": 60,
+  "robot_capacity": 3,
+  "robot_battery_max": 100.0,
+  "battery_cost_per_unit_dist": 1.0,
+  "alpha": 1.0,
+  "beta": 0.5,
+  "penalty_unassigned": 50.0,
+  "penalty_conflict": 10.0,
+  "deadline_min": 20,
+  "deadline_max": 45,
+  "task_duration_min": 2,
+  "task_duration_max": 4,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "comm_levels": {
+    "L0_None": {
+      "k": "never",
+      "budget": 0,
+      "description": "No communication; robots use only initial local info"
+    },
+    "L1_Low": {
+      "k": 10,
+      "budget": 6,
+      "description": "Low communication; infrequent periodic exchange"
+    },
+    "L2_Medium": {
+      "k": 5,
+      "budget": 15,
+      "description": "Medium communication; regular interval exchange"
+    },
+    "L3_High": {
+      "k": 1,
+      "budget": 100,
+      "description": "High communication; frequent exchange each step"
+    },
+    "L4_Full": {
+      "k": 0,
+      "budget": "unlimited",
+      "description": "Instantaneous, unrestricted delivery of explicitly transmitted messages; not omniscient global state"
+    }
+  },
+  "marl_checkpoint_source": "trained_checkpoint_with_metadata",
+  "marl_training": {
+    "algorithm": "Independent DQN (IDQN)",
+    "episodes": 120,
+    "communication_level": "L2_Medium",
+    "seed": 2026,
+    "hidden_dim": 64,
+    "learning_rate": 0.001,
+    "gamma": 0.95,
+    "batch_size": 32
+  },
+  "marl_checkpoint_sha256": {
+    "agent_0.pt": {
+      "sha256": "8bc1aa518032ec145adf658ffee6e83472e4ffe001a0addcdef6ed4ca66bd55c",
+      "size_bytes": 177097
+    },
+    "agent_1.pt": {
+      "sha256": "3a0195ac395b7538716817d0b6b1c41b78082bf19d1617913930d41d25a9c93f",
+      "size_bytes": 177097
+    },
+    "agent_2.pt": {
+      "sha256": "60c92e3428c45c4a9ca1414ae266795143a4c13d36d05432cc0b9d2a7fc6c243",
+      "size_bytes": 177097
+    }
+  },
+  "marl_checkpoint_training_metadata": {
+    "algorithm": "Independent DQN (IDQN)",
+    "seed": 2026,
+    "episodes": 120,
+    "communication_level": "L2_Medium",
+    "train_frequency": 2,
+    "observation_dimension": 87,
+    "action_dimension": 11,
+    "hidden_dimension": 64,
+    "learning_rate": 0.001,
+    "gamma": 0.95,
+    "batch_size": 32,
+    "epsilon_initial": 1.0,
+    "epsilon_minimum": 0.05,
+    "epsilon_decay": 0.995,
+    "training_time_seconds": 21.880833599716425,
+    "episode_reward_mean": 36.6775,
+    "episode_completion_mean": 0.5116666666666667
+  },
+  "shared_marl_training_metadata": {
+    "method": "shared-parameter Double DQN + demonstrations (DQfD-style)",
+    "seed": 2026,
+    "demo_episodes": 400,
+    "pretrain_steps": 12000,
+    "online_episodes": 1500,
+    "hidden": 128,
+    "gamma": 0.97,
+    "lr": 0.0005,
+    "batch": 128,
+    "margin": 10.0,
+    "online_epsilon": 0.05,
+    "reward": "50*on-time completions - travel - 10*conflicts - 0.1*messages",
+    "teacher": "OnlineGreedyPolicy(tie_break='convention'), training only",
+    "training_scenario_seeds": ">=300000 (evaluation seeds are 1-10)",
+    "training_time_s": 215.3,
+    "checkpoint_sha256": "77814a23eedf9291561615fafb002c0796735851adc860fd4f48bc8e21a06a06"
+  }
+}
